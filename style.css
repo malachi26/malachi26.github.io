@@ -1,0 +1,24 @@
+.conway-game {
+  display: table;
+}
+
+.conway-row {
+  display: table-row;
+}
+
+.conway-cell {
+  display: table-column;
+  float: left;
+  width: 8px;
+  height: 8px;
+  border: 1px solid #CCE8AF;
+}
+
+.conway-alive {
+  background-color: #7FC539;
+}
+
+.controls,
+.details {
+  margin-top: 10px;
+}

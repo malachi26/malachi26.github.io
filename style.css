@@ -9,8 +9,8 @@
 .conway-cell {
   display: table-column;
   float: left;
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 10px;
   border: 1px solid #CCE8AF;
 }
 

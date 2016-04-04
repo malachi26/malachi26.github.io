@@ -235,7 +235,6 @@
 		return this;
 	}
 		
-		
 	// Run as soon as the Document is Ready.
 	$(function () {
 		

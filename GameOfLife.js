@@ -99,7 +99,6 @@
 			return cellsDestroyed;
 		};
 		
-		// Initialize the list of cells required. Add the same to the HTML parent element.
 		var initialize = function () {
 			for (var i = 0; i < rows; i++) {
 				cells[i] = [];
@@ -110,26 +109,19 @@
 					var cell = cells[i][j] = new Cell(i, j);
 					var $cell = cell.getJqueryElement();
 			
-					// Add click handler for the Cell.
 					$cell.on('click', function (event) {
 						var cellObj = $(this).data('cell');
-						if (cellObj.isAlive()) {
-							cellObj.deActivate()
-						} else {
-							cellObj.activate();
-						}
+						
+						cellObj.isAlive() ? cellObj.deActivate() : cellObj.activate();
 				
 						_this.reMap();
 					});
-			
 					$row.append($cell);
 				}
-				// Add the HTML Row to the Parent element.
 				$parent.append($row);
 			}
 		};
 		
-		// Re-draw the Elements based on their status, if they are alive or not.
 		this.reDraw = function () {
 			for (var i = 0; i < rows; i++) {
 				for (var j = 0; j < cols; j++) {
@@ -139,29 +131,28 @@
 			}
 		};
 		
-		// Get the count of immediate neighbors for the cell.
 		this.getNeighborsCount = function (cell) {
 		
 			var neighbors = 0,
 			row = cell.getRow(),
 			col = cell.getCol();
 		
-			// Top Left to Top Right
-			if (cells[row - 1]) {
-				if (cells[row - 1][col - 1] && cells[row - 1][col - 1].isAlive()) neighbors++;
-				if (cells[row - 1][col] && cells[row - 1][col].isAlive()) neighbors++;
-				if (cells[row - 1][col + 1] && cells[row - 1][col + 1].isAlive()) neighbors++;
+			var rowAbove = cells[row - 1];
+			var rowBelow = cells[row + 1];
+			
+			if (rowAbove) {
+				if (rowAbove[col - 1] && rowAbove[col - 1].isAlive()) neighbors++;
+				if (rowAbove[col] && rowAbove[col].isAlive()) neighbors++;
+				if (rowAbove[col + 1] && rowAbove[col + 1].isAlive()) neighbors++;
 			}
 		
-			// Middle Left to Middle Right. Ignore the current cell.
 			if (cells[row][col - 1] && cells[row][col - 1].isAlive()) neighbors++;
 			if (cells[row][col + 1] && cells[row][col + 1].isAlive()) neighbors++;
 		
-			// Bottom Left to Bottom Right.
-			if (cells[row + 1]) {
-				if (cells[row + 1][col - 1] && cells[row + 1][col - 1].isAlive()) neighbors++;
-				if (cells[row + 1][col] && cells[row + 1][col].isAlive()) neighbors++;
-				if (cells[row + 1][col + 1] && cells[row + 1][col + 1].isAlive()) neighbors++;
+			if (rowBelow) {
+				if (rowBelow[col - 1] && rowBelow[col - 1].isAlive()) neighbors++;
+				if (rowBelow[col] && rowBelow[col].isAlive()) neighbors++;
+				if (rowBelow[col + 1] && rowBelow[col + 1].isAlive()) neighbors++;
 			}
 		
 			return neighbors;
@@ -190,16 +181,12 @@
 					var cell = cells[i][j];
 					var lifeValue = lifeMap[i][j];
 			
-					if (cell.isAlive()) {
-						if (lifeValue < 2 || lifeValue > 3) {
-							cell.deActivate();
-							cellsDestroyed++;
-						}
-					} else {
-						if (lifeValue === 3) {
-							cell.activate();
-							cellsCreated++;
-						}
+					if (cell.isAlive() && (lifeValue < 2 || lifeValue > 3)) {
+						cell.deActivate();
+						cellsDestroyed++;
+					} else if (lifeValue === 3) {
+						cell.activate();
+						cellsCreated++;
 					}
 				}
 			}
@@ -254,36 +241,6 @@
 		
 		var sizeX = $('#sizex');
 		var sizeY = $('#sizey');
-		//var sizeX = $('#sizex').val();
-		//var sizeY = $('#sizey').val();
-		
-		//var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
-		//game.setIterationSelector('#iterations');
-		
-		//$('#nextButton').on('click', function () {
-		//	game.next();
-		//});
-		//
-		//$('#playButton').on('click', function () {
-		//	game.play();
-		//});
-		//
-		//$('#pauseButton').on('click', function () {
-		//	game.pause();
-		//});
-		//
-		//$('#speedUpButton').on('click', function () {
-		//	game.increaseSpeed();
-		//});
-		//
-		//$('#slowDownButton').on('click', function () {
-		//	game.decreaseSpeed();
-		//});
-		//
-		//$('#fetchDetailsButton').on('click', function () {
-		//	$('#cellsCreated').text(game.getCellsCreated());
-		//	$('#cellsDestroyed').text(game.getCellsDestroyed());
-		//});
 		
 		$('#createGameButton').on('click', function () {
 			var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
@@ -312,22 +269,8 @@
 			$('#fetchDetailsButton').on('click', function () {
 				$('#cellsCreated').text(game.getCellsCreated());
 				$('#cellsDestroyed').text(game.getCellsDestroyed());
-			});
-		
+			});		
 		});
-		
-		//sizeX.on('blur', function () {
-		//	$('.conway-game').empty();
-		//	if (game) delete game;
-		//	//sizeX = $('#sizex');
-		//	var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
-		//})
-		//sizeY.on('blur', function(){
-		//	$('.conway-game').empty();
-		//	if (game) delete game;
-		//	//sizeY = $('#sizey');
-		//	var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
-		//})
 	});
  })();
  

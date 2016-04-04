@@ -251,36 +251,83 @@
 		
 	// Run as soon as the Document is Ready.
 	$(function () {
-		var sizeX = $('#sizex').value;
-		var sizeY = $('#sizey').value;
 		
-		var game = new ConwayGame('.conway-game', sizeX, sizeY);
-		game.setIterationSelector('#iterations');
+		var sizeX = $('#sizex');
+		var sizeY = $('#sizey');
+		//var sizeX = $('#sizex').val();
+		//var sizeY = $('#sizey').val();
 		
-		$('#nextButton').on('click', function () {
-			game.next();
+		//var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
+		//game.setIterationSelector('#iterations');
+		
+		//$('#nextButton').on('click', function () {
+		//	game.next();
+		//});
+		//
+		//$('#playButton').on('click', function () {
+		//	game.play();
+		//});
+		//
+		//$('#pauseButton').on('click', function () {
+		//	game.pause();
+		//});
+		//
+		//$('#speedUpButton').on('click', function () {
+		//	game.increaseSpeed();
+		//});
+		//
+		//$('#slowDownButton').on('click', function () {
+		//	game.decreaseSpeed();
+		//});
+		//
+		//$('#fetchDetailsButton').on('click', function () {
+		//	$('#cellsCreated').text(game.getCellsCreated());
+		//	$('#cellsDestroyed').text(game.getCellsDestroyed());
+		//});
+		
+		$('#createGameButton').on('click', function () {
+			var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
+			game.setIterationSelector('#iterations');
+		
+			$('#nextButton').on('click', function () {
+				game.next();
+			});
+			
+			$('#playButton').on('click', function () {
+				game.play();
+			});
+			
+			$('#pauseButton').on('click', function () {
+				game.pause();
+			});
+			
+			$('#speedUpButton').on('click', function () {
+				game.increaseSpeed();
+			});
+			
+			$('#slowDownButton').on('click', function () {
+				game.decreaseSpeed();
+			});
+			
+			$('#fetchDetailsButton').on('click', function () {
+				$('#cellsCreated').text(game.getCellsCreated());
+				$('#cellsDestroyed').text(game.getCellsDestroyed());
+			});
+		
 		});
 		
-		$('#playButton').on('click', function () {
-			game.play();
-		});
-		
-		$('#pauseButton').on('click', function () {
-			game.pause();
-		});
-		
-		$('#speedUpButton').on('click', function () {
-			game.increaseSpeed();
-		});
-		
-		$('#slowDownButton').on('click', function () {
-			game.decreaseSpeed();
-		});
-		
-		$('#fetchDetailsButton').on('click', function () {
-			$('#cellsCreated').text(game.getCellsCreated());
-			$('#cellsDestroyed').text(game.getCellsDestroyed());
-		});
+		//sizeX.on('blur', function () {
+		//	$('.conway-game').empty();
+		//	if (game) delete game;
+		//	//sizeX = $('#sizex');
+		//	var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
+		//})
+		//sizeY.on('blur', function(){
+		//	$('.conway-game').empty();
+		//	if (game) delete game;
+		//	//sizeY = $('#sizey');
+		//	var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
+		//})
 	});
  })();
  

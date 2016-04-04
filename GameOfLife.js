@@ -251,6 +251,9 @@
 		
 	// Run as soon as the Document is Ready.
 	$(function () {
+		var sizeX = $('#sizex').value;
+		var sizeY = $('#sizey').value;
+		
 		var game = new ConwayGame('.conway-game', 50, 50);
 		game.setIterationSelector('#iterations');
 		

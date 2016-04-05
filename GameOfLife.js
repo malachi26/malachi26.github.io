@@ -242,6 +242,11 @@
 		var sizeY = $('#sizey');
 		
 		$('#createGameButton').on('click', function () {
+			var conwayGame = document.getElementsByClassName('conway-game')[0];
+			while (conwayGame.firstChild) {
+				conwayGame.removeChild(conwayGame.firstChild);
+			}
+			
 			var game = new ConwayGame('.conway-game', sizeY.val(), sizeX.val());
 			game.setIterationSelector('#iterations');
 		

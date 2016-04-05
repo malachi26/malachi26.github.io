@@ -83,9 +83,9 @@
 			return intervalTime;
 		};
 		
-		this.getIterations = function () {
-			return iterations;
-		};
+		//this.getIterations = function () {
+		//	return iterations;
+		//};
 		
 		this.setIterationSelector = function (jQuerySelector) {
 			$iterationsElement = $(jQuerySelector);
@@ -193,6 +193,7 @@
 				}
 			}
 			_this.reMap();
+			
 		};
 		
 		this.next = function () {

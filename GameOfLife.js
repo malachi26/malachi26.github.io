@@ -99,6 +99,8 @@
 			return cellsDestroyed;
 		};
 		
+		
+		
 		var initialize = function () {
 			for (var i = 0; i < rows; i++) {
 				cells[i] = [];
@@ -242,6 +244,8 @@
 		var sizeY = $('#sizey');
 		
 		$('#createGameButton').on('click', function () {
+			
+			delete this.game;
 			var conwayGame = document.getElementsByClassName('conway-game')[0];
 			while (conwayGame.firstChild) {
 				conwayGame.removeChild(conwayGame.firstChild);

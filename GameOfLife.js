@@ -202,18 +202,22 @@
 		};
 		
 		this.play = function () {
-			if (!running) {
-				intervalId = setInterval(_this.next, intervalTime);
-				running = true;
-			}
+			this.PlayPause();
 		};
 		
 		this.pause = function () {
+			this.PlayPause();
+		};
+		
+		this.PlayPause = function () {
 			if (running) {
 				clearInterval(intervalId);
-				running = false;
+				running = !running;
+				return;
 			}
-		};
+			intervalId = setInterval(_this.next, intervalTime);
+			running = !running;
+		}
 		
 		this.increaseSpeed = function () {
 			if (intervalTime > 100) {

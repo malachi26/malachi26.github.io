@@ -11,11 +11,11 @@
   float: left;
   width: 10px;
   height: 10px;
-  border: 1px solid #CCE8AF;
+  border: 1px solid #E77471;
 }
 
 .conway-alive {
-  background-color: #7FC539;
+  background-color: #FF0000;
 }
 
 .controls,

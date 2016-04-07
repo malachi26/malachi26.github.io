@@ -183,19 +183,12 @@
 					var cell = cells[i][j];
 					var lifeValue = lifeMap[i][j];
 			
-					if (cell.isAlive()) {
-						if (lifeValue < 2 || lifeValue > 3) {
-							cell.deActivate();
-							cellsDestroyed++;
-						} else if (lifeValue === 3) {
-							cell.activate();
-							//cellsCreated++;
-						}
-					} else {
-						if (lifeValue === 3){
-							cell.activate();
-							cellsCreated++;
-						}
+					if (cell.isAlive() && (lifeValue < 2 || lifeValue > 3) {
+						cell.deActivate();
+						cellsDestroyed++;
+					} else if (lifeValue === 3){
+						cell.activate();
+						cellsCreated++;
 					}
 				}
 			}

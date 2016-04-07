@@ -193,7 +193,6 @@
 				}
 			}
 			_this.reMap();
-			
 		};
 		
 		this.next = function () {
@@ -223,14 +222,17 @@
 			if (intervalTime > 100) {
 				intervalTime -= 100;
 			}
-			_this.pause();
-			_this.play();
+			_this.flicker();
 		};
 		
 		this.decreaseSpeed = function () {
 			if (intervalTime < 2000) {
 				intervalTime += 100;
 			}
+			_this.flicker();
+		};
+		
+		this.flicker = function () {
 			_this.pause();
 			_this.play();
 		};
@@ -238,7 +240,6 @@
 		if (cells.length === 0) {
 			initialize();
 		}
-
 		return this;
 	}
 		
